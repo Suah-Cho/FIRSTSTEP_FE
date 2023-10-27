@@ -1,23 +1,130 @@
-.table {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    border-spacing: 0;
-}
-
-.tableHeader {
-    border-bottom: 1px solid #e8e8e8;
+/* * {
+    margin: 0;
     padding: 0;
-    font-size: 16px;
-    padding: 10px 5px;
-    font-weight: bold;
+} */
+
+html {
+    font-size: 10px;
 }
 
-.tableRow:hover {
-    background-color: #eceaea;
+
+.header {
+    height: 145px;
+    text-align: center;
+    border-bottom: 1px solid #999;
+}
+
+.header_logo h1 {
+    font: bold 38px 'arial';
+    padding-top: 14px;
+    letter-spacing: 2px;
+}
+
+.header_logo p {
+    font: bold 12px 'arial';
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+.board_wrap {
+    width: 1000px;
+    margin: 30px auto;
+}
+
+
+.board_title {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    
+}
+
+.board_title strong {
+    font-size: 3rem;
+}
+
+.board_title p {
+    margin-top: 5px;
+    font-size: 1.4rem;
+}
+
+
+.board_list {
+    width: 100%;
+    border-top: 2px solid #868e96;
+}
+
+.board_body:hover {
+    background-color: #F6F6F6;
     cursor: pointer;
 }
 
-.tableColumn {
-    padding: 10px 5px;
+.board_list>div {
+    border-bottom: 1px solid #ddd;
+    font-size: 0;
+}
+
+.board_list>div.top {
+    border-bottom: 1px solid #999;
+}
+
+.board_list>div:last-child {
+    border-bottom: 1px solid #868e96;
+}
+
+.board_list>div>div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.board_list>div.top>div {
+    font-weight: 600;
+}
+
+.board_list .num {
+    width: 10%;
+}
+
+.board_list .title {
+    width: 60%;
+    text-align: left;
+}
+
+.board_list .top .title {
+    text-align: center;
+}
+
+.board_list .writer {
+    width: 10%;
+}
+
+.board_list .date {
+    width: 10%;
+}
+
+.board_list .count {
+    width: 10%;
+}
+
+.board_page {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.board_page button {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+
+.board_page button:hover {
+    background-color: lightgray;
+    cursor: pointer;
 }

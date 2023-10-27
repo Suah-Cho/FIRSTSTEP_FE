@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from "react";
-import Layout from "./component/Layout";
 import { Route, Routes } from "react-router-dom";
-import PostList from "./component/PostList";
 import Header from "./component/Header";
 import Home from "./component/Home";
+import BoardPostList from "./component/BoardPostList";
 
 function App() {
   
@@ -12,15 +11,13 @@ function App() {
       <Routes>
         <Route element={<Header/>}>
           <Route path="/" element={<Home />} />
-          <Route path="/board" element={<PostList/>} />
-          <Route path="/board/detail" element={<PostList/>}>
-            <Route path=":boardId" element={<PostList/>} />
+          <Route path="/board" element={<BoardPostList/>} />
+          <Route path="/board/detail" element={<BoardPostList/>}>
+            <Route path=":boardId" element={<BoardPostList/>} />
           </Route>
-          <Route path='/toyrent' element={<PostList/>} />
-          <Route path='/login' element={<PostList/>} />
-          <Route path='/signup' element={<PostList/>} />
-
-
+          <Route path='/toyrent' element={<BoardPostList/>} />
+          <Route path='/login' element={<BoardPostList/>} />
+          <Route path='/signup' element={<BoardPostList/>} />
         </Route>
       </Routes>
     </>

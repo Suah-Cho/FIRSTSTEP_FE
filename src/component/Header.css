@@ -1,0 +1,21 @@
+html {
+    font-size: 10px;
+}
+
+.header {
+    height: 145px;
+    text-align: center;
+    border-bottom: 1px solid #999;
+}
+
+.header_logo h1 {
+    font: bold 38px 'arial';
+    padding-top: 14px;
+    letter-spacing: 2px;
+}
+
+.header_logo p {
+    font: bold 12px 'arial';
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
