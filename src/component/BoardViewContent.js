@@ -7,37 +7,19 @@ const BoardViewContent = ({boardId}) =>{
     // const {boardId} = match.params;
     console.log("content boardid : ", boardId);
 
-    // const boardId = 1;
     // 게시판상세정보
     const [ boardDatas, setBoardDatas] = useState([{}]);
     // 게시판 데이터 가져오기
 
-    // useEffect((boardId) => {
-    //     axios.get('/boardDetail?boardId=',boardId)
-    //     .then(res => {
-
-    //     console.log("===========================");
-    //     console.log("res",res);
-    //     setBoardDatas(res.data);
-    //     console.log("res",res);
-    //     setBoardDatas(res.data);
-    //     }).catch(err => console.log(err));
-    // }, []);
-
     const postBoardID = () => {
         axios.post('/boardDetail', {id : boardId}, { headers: { 'Content-Type': 'application/json' } })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    } 
-
-
-    useEffect(() => {
-        postBoardID()
-        // console.log("boardid post")
-        axios.get('/boardDetail')
         .then(response => {
             setBoardDatas(response.data)
         }).catch(err => console.log(err));
+    } 
+
+    useEffect(() => {
+        postBoardID()
     }, [])
 
     console.log('BoardViewContent- boardDatas : ', boardDatas);
