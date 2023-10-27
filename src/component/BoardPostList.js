@@ -10,10 +10,10 @@ function BoardPostList() {
     const [ posts, setPosts ] = useState({});
     const [ limit, setLimit ] = useState(10);
     const [ page, setPage ] = useState(1);
-    const offset = ( page - 1 ) * limit;
+    const startat = ( page - 1 ) * limit;
 
     useEffect(() => {
-        axios.get('/members')
+        axios.get('/boardlist')
         .then(responce => {
             setPosts(responce.data)
         }).catch(error => console.log(error));
@@ -40,7 +40,7 @@ function BoardPostList() {
                         <div className="date">작성일</div>
                     </div>
                     {
-                    item.slice(offset, offset + limit ).map(post => (
+                    item.slice(startat, startat + limit ).map(post => (
                         <div className="board_body">
                             <div className="num">{post.boardId}</div>
                             <div className="title">{post.title}<Link to={`/board/detail/${post.boardId}`}/></div>
