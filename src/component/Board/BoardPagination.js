@@ -1,4 +1,4 @@
-import './Table.css';
+import './BoardPostList';
 
 const BoardPagination = ({total, limit, page, setPage}) => {
     const numPages = Math.ceil( total / limit);

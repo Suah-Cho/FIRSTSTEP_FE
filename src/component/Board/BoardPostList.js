@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import './Table.css';
+import './BoardPostList.css';
 import { Link } from "react-router-dom";
 import BoardPagination from "./BoardPagination";
 
@@ -40,10 +40,10 @@ function BoardPostList() {
                         <div className="date">작성일</div>
                     </div>
                     {
-                    item.slice(startat, startat + limit ).map(post => (
-                        <div className="board_body">
+                    item.slice(startat, startat + limit ).map((post, idx) => (
+                        <div className="board_body" key={idx}>
                             <div className="num">{post.boardId}</div>
-                            <div className="title"><Link to={`/board/detail/${post.boardId}`}>{post.title}</Link></div>
+                            <div className="title" ><Link to={`/board/detail/${post.boardId}`} style={{ textDecoration: "none", color: "black"}}>{post.title}</Link></div>
                             <div className="writer">{post.ID}</div>
                             <div className="count">{post.location}</div>
                             <div className="div">{post.date}</div>
@@ -56,7 +56,10 @@ function BoardPostList() {
         
 
         <BoardPagination total={item.length} limit={limit} page={page} setPage={setPage} />
-
+        
+        <div className="bt_wrap">
+            <Link to='/board/write' ><button className="on">등록하기</button></Link>
+        </div>
         </>
     );
 }

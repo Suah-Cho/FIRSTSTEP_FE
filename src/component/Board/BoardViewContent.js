@@ -2,6 +2,7 @@ import './BoardDetail.css'
 
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
+import BoardViewButtons from './BoardViewButtons';
 
 const BoardViewContent = ({boardId}) =>{
     // const {boardId} = match.params;
@@ -11,20 +12,17 @@ const BoardViewContent = ({boardId}) =>{
     const [ boardDatas, setBoardDatas] = useState([{}]);
     // 게시판 데이터 가져오기
 
-    const postBoardID = () => {
+    useEffect(() => {
         axios.post('/boardDetail', {id : boardId}, { headers: { 'Content-Type': 'application/json' } })
         .then(response => {
             setBoardDatas(response.data)
         }).catch(err => console.log(err));
-    } 
-
-    useEffect(() => {
-        postBoardID()
     }, [])
 
     console.log('BoardViewContent- boardDatas : ', boardDatas);
 
     return(
+        <>
         <div className="BoardViewContent">
             <div className="title">
                 {boardDatas[0].title}   
@@ -49,6 +47,9 @@ const BoardViewContent = ({boardId}) =>{
             </div>
             <textarea readOnly value={boardDatas[0].content}></textarea>
         </div>
+
+        <BoardViewButtons boardDatas={boardDatas[0]} />
+        </>
     );
 };
 export default BoardViewContent;

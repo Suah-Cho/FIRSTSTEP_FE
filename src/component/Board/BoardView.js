@@ -6,7 +6,7 @@ const BoardView = ({boardId}) =>{
     return(
         <div className="BoardViewWrap">
             <BoardViewContent boardId={boardId}/>
-            <BoardViewButtons />
+            {/* <BoardViewButtons /> */}
         </div>
     );
 };

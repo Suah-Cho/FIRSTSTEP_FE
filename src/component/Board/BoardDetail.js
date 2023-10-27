@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 const BoardDetail = () =>{
     const {boardId} = useParams();
-    // console.log('boardId : ',boardId);
+    console.log('boardId : ', boardId);
 
     return(
         <>

@@ -108,7 +108,7 @@ html {
 }
 
 .board_page {
-    margin-top: 30px;
+    margin : 30px;
     text-align: center;
     font-size: 0;
 }
@@ -127,4 +127,16 @@ html {
 .board_page button:hover {
     background-color: lightgray;
     cursor: pointer;
+}
+
+
+.bt_wrap {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.bt_wrap button.on {
+    background: #1dc078;
+    color: #fff;
 }
