@@ -38,7 +38,7 @@ const BoardWrite = () => {
                         <dl>
                             <dt>글쓴이</dt>
                             {/* session값 오면 넣기 */}
-                            <dd>글쓴이 섹션값</dd> 
+                            <dd>{sessionStorage.getItem('userId')}</dd> 
                         </dl>
                         <dl>
                             <dt>지역</dt>

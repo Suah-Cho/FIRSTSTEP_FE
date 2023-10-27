@@ -136,6 +136,36 @@ html {
     font-size: 0;
 }
 
+.bt_wrap a {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #868e96;
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-size: 1.4rem;
+}
+
+.bt_wrap button {
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #1dc078;
+    border-radius: 2px;
+    font-size: 1.4rem;
+}
+
+.bt_wrap a:first-child {
+    margin-left: 0;
+}
+
+.bt_wrap a.on {
+    background: #1dc078;
+    color: #fff;
+}
+
 .bt_wrap button.on {
     background: #1dc078;
     color: #fff;

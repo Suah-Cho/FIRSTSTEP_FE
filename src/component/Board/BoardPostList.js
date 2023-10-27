@@ -20,6 +20,12 @@ function BoardPostList() {
     }, []);
 
     const item = Object.values(posts);
+
+    const authCheck = () => {
+        if ( sessionStorage.getItem('userId') === null ) {
+            alert('로그인을 해주세요:)')
+        }
+    }
     
     const headersName = ['글 번호', '제목', '작성자', '지역', '작성일'];
 
@@ -58,7 +64,7 @@ function BoardPostList() {
         <BoardPagination total={item.length} limit={limit} page={page} setPage={setPage} />
         
         <div className="bt_wrap">
-            <Link to='/board/write' ><button className="on">등록하기</button></Link>
+            <Link to='/board/write' onClick={authCheck}><button className="on">등록하기</button></Link>
         </div>
         </>
     );
