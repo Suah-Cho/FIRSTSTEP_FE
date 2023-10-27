@@ -3,8 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./component/Header";
 import Home from "./component/Home";
 import BoardPostList from "./component/BoardPostList";
+import BoardDetail from "./component/BoardDetail";
 
 function App() {
+  // const [ session, setSession ] = useState('suah');
   
   return (
     <>
@@ -12,9 +14,7 @@ function App() {
         <Route element={<Header/>}>
           <Route path="/" element={<Home />} />
           <Route path="/board" element={<BoardPostList/>} />
-          <Route path="/board/detail" element={<BoardPostList/>}>
-            <Route path=":boardId" element={<BoardPostList/>} />
-          </Route>
+          <Route path="/board/detail/:boardId" element={<BoardDetail />} />
           <Route path='/toyrent' element={<BoardPostList/>} />
           <Route path='/login' element={<BoardPostList/>} />
           <Route path='/signup' element={<BoardPostList/>} />

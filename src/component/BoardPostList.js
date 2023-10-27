@@ -43,7 +43,7 @@ function BoardPostList() {
                     item.slice(startat, startat + limit ).map(post => (
                         <div className="board_body">
                             <div className="num">{post.boardId}</div>
-                            <div className="title">{post.title}<Link to={`/board/detail/${post.boardId}`}/></div>
+                            <div className="title"><Link to={`/board/detail/${post.boardId}`}>{post.title}</Link></div>
                             <div className="writer">{post.ID}</div>
                             <div className="count">{post.location}</div>
                             <div className="div">{post.date}</div>
