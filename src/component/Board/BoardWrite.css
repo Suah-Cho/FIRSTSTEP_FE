@@ -27,6 +27,8 @@
 .bt_wrap button.on {
     background: #1dc078;
     color: #fff;
+    border-color: #1dc078;
+
 }
 
 /* board_write */

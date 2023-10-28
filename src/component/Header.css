@@ -1,12 +1,58 @@
-html {
-    font-size: 10px;
+.homeImg{
+    background-image: url(Image/mainimg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.home_title {
+    height: 145px;
+    /* border-bottom: 1px solid #999; */
+    display : flex;
+    /* background-color: green; */
+}
+.home_left button{
+    font: bold 4rem 'arial';
+    background: none;
+    border: none;
+    margin : 4rem;
+    /* color: white; */
+    font-family: "Gugi";
+    
+}
+.home_right_buttons{
+    text-align: right;
+    margin : 6rem;
+}
+.home_left {
+    width: 50%;
+    float: left;
+}
+.home_right {
+    width: 50%;
+    float: right;
+}
+.home_right_buttons button {
+    background: none;
+    border: none;
+    font: bold 1.8rem 'arial';
+    /* color: white; */
 }
 
-.header {
-    height: 145px;
-    text-align: center;
-    border-bottom: 1px solid #999;
+/* .back_img{
+
+    background-image: url(mainimg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+.bsize{
+    background-image: url(mainimg.png);
+    background-size: cover;
+    height: 70%;
+    font-size: 20rem;
+   width: 100%;
+} */
+
 
 .header_logo h1 {
     font: bold 38px 'arial';

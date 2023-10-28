@@ -5,6 +5,7 @@ import axios from "axios";
 
 const Header = () => {
   const [ userId , setUserId ] = useState('');
+  const [ background, setBackGround ] = useState(false);
 
   const [ isLogin, setIsLogin ] = useState(false);
 
@@ -32,24 +33,28 @@ const Header = () => {
   }
 
   return(
-    <>
-    <header>
-    <Link to={'/'}><h2>한걸음 대여소</h2></Link>
-    <Link to='/board'>| 공지사항 | </Link>
-    <Link to='/toyrent'> | 장난감 대여소 | </Link>
-
-    {
-      
-      isLogin ?  <div><Link to='/logout'> | 로그아웃 | </Link><Link to='/signout'> | 회원탈퇴 | </Link></div> : <div><Link to='/login'> | 로그인 | </Link><Link to='/signup'> | 회원가입 | </Link></div>
-      
-    }
-
-    </header>
-    <main>
-      <Outlet />
-    </main>
-
-    </>
+    <div className="all">
+      <header>
+        <div className="home_title">
+          <div className="home_left">
+            <Link to={'/'}><button>한걸음 대여소</button></Link>
+          </div>
+          <div className="home_right">
+            <div className="home_right_buttons">
+              <Link to='/board'><button>|   공지사항   |</button> </Link>
+              {/* {isLogin && <div><Link to='/logout'> | 로그아웃 | </Link><Link to='/signout'> | 회원탈퇴 | </Link></div>}{!isLogin &&<div><Link to='/login'> | 로그인 | </Link><Link to='/signup'> | 회원가입 | </Link></div>} */}
+              {isLogin && <Link to='/logout'> <button>|   로그아웃   | </button></Link>}
+              {isLogin && <Link to='/signout'> <button>|   회원탈퇴   | </button></Link> }
+              {!isLogin &&<Link to='/login'> <button>|   로그인   | </button></Link>}
+              {!isLogin &&<Link to='/signup'> <button>|   회원가입   | </button></Link>}
+              </div>
+          </div>
+        </div>   
+      </header>
+      <main>
+        <Outlet />
+      </main>
+    </div>
   );
 }
 

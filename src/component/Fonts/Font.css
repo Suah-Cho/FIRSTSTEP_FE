@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "DokDo";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./EastSeaDokdo-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "NanumBrush";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./NanumBrushScript-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "BagelFatOne";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./BagelFatOne-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Gugi";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./Gugi-Regular.woff") format("woff");
+}
