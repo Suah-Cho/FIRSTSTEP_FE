@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import './BoardPostList.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BoardPagination from "./BoardPagination";
 
 
 
 function BoardPostList() {
+    const navigate = useNavigate();
     const [ posts, setPosts ] = useState({});
     const [ limit, setLimit ] = useState(10);
     const [ page, setPage ] = useState(1);
@@ -21,9 +22,14 @@ function BoardPostList() {
 
     const item = Object.values(posts);
 
+    const goBoardPostList = () => navigate('/login');
+
     const authCheck = () => {
         if ( sessionStorage.getItem('userId') === null ) {
             alert('로그인을 해주세요:)')
+            goBoardPostList();
+        } else {
+            navigate('/board/write')
         }
     }
     
@@ -64,7 +70,7 @@ function BoardPostList() {
         <BoardPagination total={item.length} limit={limit} page={page} setPage={setPage} />
         
         <div className="bt_wrap">
-            <Link to='/board/write' onClick={authCheck}><button className="on">등록하기</button></Link>
+            <button className="on" onClick={authCheck}>등록하기</button>
         </div>
         </>
     );

@@ -1,20 +1,17 @@
-import React, {useState, useEffect} from "react";
-import axios from 'axios';
-import BoardTitle from "./BoardTitle";
-import BoardView from "./BoardView";
+import React from "react";
+import BoardViewContent from "./BoardViewContent";
 import './BoardDetail.css'
 import { useParams } from "react-router-dom";
 
 const BoardDetail = () =>{
     const {boardId} = useParams();
-    console.log('boardId : ', boardId);
+    // console.log('boardId : ',boardId);
 
     return(
         <>
-            <div className="BoardWrap">  
-                <BoardTitle />
-                <BoardView boardId={boardId}/>
-            </div>
+                <div className="BoardWrap">  
+                    <BoardViewContent boardId={boardId}/>
+                </div>
         </>
     );
 }

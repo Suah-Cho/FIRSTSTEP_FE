@@ -46,7 +46,7 @@ const BoardWrite = () => {
                         </dl>
                     </div>
                     <div className="cont">
-                        <textarea placeholder="내용을 입력해주세요." value={content} onChange={handlerChangeContent}/>
+                        <textarea placeholder="내용을 입력해주세요." value={content} onChange={handlerChangeContent} required/>
                     </div>
                 </div>
                 <div className="bt_wrap">

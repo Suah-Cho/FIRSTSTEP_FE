@@ -3,34 +3,39 @@
     width: 1000px;
     margin: 30px auto;
 }
-
-/* BoardTitle.js */
-.BoardTitle {
-    margin-top: 10px;
-    margin-bottom: 30px;
-    
-}
-.BoardTitle strong {
-    font-size: 3rem;
-}
-.BoardTitle p {
-    margin-top: 5px;
-    font-size: 1.4rem;
-}
-
-/* BoardViewContent.js */
+/* BoardViewContent.js 게시물*/
 .BoardViewContent {
     width: 100%;
     border-top: 2px solid #000;
     border-bottom: 2px solid #000;
 }
 .BoardViewContent .title {
-    padding: 20px 15px;
-    border-bottom: 1px dashed #ddd;
-    font-size: 2rem;
+    padding: 15px;
+}
+.BoardViewContent .title dl {
+    font-size: 0;
+}
+.BoardViewContent .title dt,
+.BoardViewContent .title dd{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.4rem;
+}
+.BoardViewContent .title dt{
+    width: 50px;
+}
+.BoardViewContent .title dd {
+    width: calc(100% - 100px);
+}
+.BoardViewContent .title textarea {
+        width: 100%;
+        height: 15px;
+        border: none;
+        overflow:hidden;
 }
 .BoardViewContent .info {
     padding: 15px;
+    border-top: 1px dashed #ddd;
     border-bottom: 1px solid #999;
     font-size: 0;
 }
@@ -38,6 +43,7 @@
     position: relative;
     display: inline-block;
     padding: 0 20px;
+    
 }
 .BoardViewContent .info dl:first-child {
     padding-left: 0;
@@ -74,8 +80,16 @@
     border: none;
     resize: none;
 }
-
-/* BoardViewButtons.js */
+/* .BoardDetailEdit .cont textarea {
+    display: block;
+    width: 100%;
+    height: 300px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 0;
+    resize: vertical;
+} */
+/* BoardViewContent.js 버튼*/
 .BoardViewButtons {
     margin-top: 30px;
     text-align: center;
@@ -91,15 +105,6 @@
     border-radius: 2px;
     font-size: 1.4rem;
 }
-/* .BoardViewButtons input {
-    display: inline-block;
-    min-width: 80px;
-    margin-left: 10px;
-    padding: 10px;
-    border: 1px solid #1dc078;
-    border-radius: 2px;
-    font-size: 1.4rem;
-} */
 .BoardViewButtons a:first-child {
     margin-left: 0;
 }

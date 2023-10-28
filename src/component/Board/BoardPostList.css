@@ -134,17 +134,7 @@ html {
     margin-top: 30px;
     text-align: center;
     font-size: 0;
-}
-
-.bt_wrap a {
-    display: inline-block;
-    min-width: 80px;
-    margin-left: 10px;
-    padding: 10px;
-    border: 1px solid #868e96;
-    box-sizing: border-box;
-    border-radius: 2px;
-    font-size: 1.4rem;
+    width : 100%;
 }
 
 .bt_wrap button {
