@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {FaUserCircle} from "react-icons/fa"
 import './Login.css';
 
 const Login = () => {
