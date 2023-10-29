@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import backgroundImg from './Image/mainimg.jpg';
 import './Home.css';
 
