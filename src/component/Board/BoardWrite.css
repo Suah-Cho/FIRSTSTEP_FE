@@ -32,6 +32,11 @@
 }
 
 /* board_write */
+.board_write_wrap{
+    width: 1000px;
+    margin: 30px auto;
+}
+
 .board_write {
     border-top: 2px solid #000;
 }

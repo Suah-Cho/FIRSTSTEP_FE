@@ -8,6 +8,7 @@ const BoardWrite = () => {
     const [ title, setTitle ] = useState('');
     const [ location, setLocation ] = useState('');
     const [ content, setContent ] = useState('');
+    const [ userId, setUserId ] = useState('');
 
     const goBoardPostList = () => navigate(-1);
 
@@ -15,12 +16,28 @@ const BoardWrite = () => {
     const handlerChangeLocation = e => {setLocation(e.target.value)}
     const handlerChangeContent = e => {setContent(e.target.value)}
 
+    useEffect(() => {
+        axios.post('/checkid',{userId : sessionStorage.getItem('userId')} )
+        .then(responce => {
+            setUserId(responce.data.ID)
+        }).catch(error => console.log(error));
+    }, []);
+
     const postData = () => {
-        axios.post('/boardWrite', {title : title, location : location, content : content }, { headers: { 'Content-Type': 'application/json' } })
-        .then(response => {
-            console.log(response);
-            goBoardPostList();
-        }).catch(err => console.log(err));
+        if (title === '') {
+            alert('제목을 입력해주세요.');
+        } else if (content === '') {
+            alert('내용을 입력해주세요.');
+        } else if (location === '') {
+            alert('지역을 입력해주세요.');
+        } else {
+            axios.post('/boardWrite', {title : title, location : location, content : content, userId : sessionStorage.getItem('userId') }, { headers: { 'Content-Type': 'application/json' } })
+            .then(response => {
+                console.log(response);
+                goBoardPostList();
+            }).catch(err => console.log(err));
+        }
+        
     }
 
 
@@ -38,7 +55,7 @@ const BoardWrite = () => {
                         <dl>
                             <dt>글쓴이</dt>
                             {/* session값 오면 넣기 */}
-                            <dd>{sessionStorage.getItem('userId')}</dd> 
+                            <dd>{userId}</dd> 
                         </dl>
                         <dl>
                             <dt>지역</dt>
@@ -50,7 +67,7 @@ const BoardWrite = () => {
                     </div>
                 </div>
                 <div className="bt_wrap">
-                    <button onClick={postData}>등록</button>
+                    <button onClick={postData} className='on'>등록</button>
                     <Link to='/board'><button>취소</button></Link>
                 </div>
             </div>
