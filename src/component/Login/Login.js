@@ -36,7 +36,7 @@ const Login = () => {
                 <h2>ID</h2>
                 <input type="text" placeholder="아이디를 입력해주세요." value={userId} onChange={handlerUserId} required/>
                 <h2>PW</h2>
-                <input type="text" placeholder="비밀번호를 입력해주세요." value={userPW} onChange={handleruserPW} required/>
+                <input type="password" placeholder="비밀번호를 입력해주세요." value={userPW} onChange={handleruserPW} required/>
             </div>
             <div className="login_bt">
                 <button className="on" onClick={onClickLogin}>로그인</button>
