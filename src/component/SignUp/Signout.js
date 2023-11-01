@@ -4,7 +4,7 @@ const SignOut = () => {
 
     const onSignout = () => {
         alert('회원 탈퇴되었습니다:)')
-        axios.post("/signout", {userId : sessionStorage.getItem('userId')})
+        axios.delete(`http://10.0.0.3:5000/signout/${sessionStorage.getItem('userId')}`)
         .then(response => {
             console.log(response.data);
         }).catch(error => {

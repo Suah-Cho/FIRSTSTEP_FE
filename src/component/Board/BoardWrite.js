@@ -17,7 +17,7 @@ const BoardWrite = () => {
     const handlerChangeContent = e => {setContent(e.target.value)}
 
     useEffect(() => {
-        axios.post('/checkid',{userId : sessionStorage.getItem('userId')} )
+        axios.get('http://10.0.0.3:5000/checkid',{userId : sessionStorage.getItem('userId')} )
         .then(responce => {
             setUserId(responce.data.ID)
         }).catch(error => console.log(error));

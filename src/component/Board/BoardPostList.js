@@ -14,7 +14,7 @@ function BoardPostList() {
     const startat = ( page - 1 ) * limit;
 
     useEffect(() => {
-        axios.get('/boardlist')
+        axios.get('http://10.0.0.3:5000/boardlist')
         .then(responce => {
             setPosts(responce.data)
         }).catch(error => console.log(error));

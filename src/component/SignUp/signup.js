@@ -36,7 +36,7 @@ function SignUp() {
 
     }
     const postUser = () => {
-        axios.post('/signup', 
+        axios.post('http://10.0.0.3:5000/signup', 
         {ID: ID, password: password, password_confirm: password_confirm, name: name, phoneNumber: phoneNumber }
         , { headers: { 'Content-Type': 'application/json' } })
         .then(response => {

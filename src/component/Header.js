@@ -24,9 +24,9 @@ const Header = () => {
     };
 
   const getUserId = () => {
-    axios.post('/checkid', { userId : sessionStorage.getItem('userId')}, { headers: { 'Content-Type': 'application/json' } })
+    axios.get(`http://10.0.0.3:5000/checkid/${sessionStorage.getItem('userId')}`)
     .then(response => {
-        console.log(response.data.ID)
+        console.log(response)
         setUserId(response.data.ID)
         // setUserId(response)
     })
