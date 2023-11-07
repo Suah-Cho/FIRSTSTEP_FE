@@ -58,7 +58,7 @@ function BoardPostList() {
                             <div className="title" ><Link to={`/board/detail/${post.boardId}`} style={{ textDecoration: "none", color: "black"}}>{post.title}</Link></div>
                             <div className="writer">{post.ID}</div>
                             <div className="count">{post.location}</div>
-                            <div className="div">{post.date}</div>
+                            <div className="div">{post.createAt}</div>
                         </div>
                     ))
                     }
