@@ -9,7 +9,7 @@ import BoardPagination from "./BoardPagination";
 function BoardPostList() {
     const navigate = useNavigate();
     const [ posts, setPosts ] = useState({});
-    const [ limit, setLimit ] = useState(10);
+    const limit = 10;
     const [ page, setPage ] = useState(1);
     const startat = ( page - 1 ) * limit;
 

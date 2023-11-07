@@ -11,7 +11,7 @@ const Login = () => {
     const handlerPW = e => { setPW(e.target.value) }
 
     const onClickLogin = () => {
-        axios.get(`http://10.0.0.3:5000/login/${ID}/${PW}` )
+        axios.get(`http://10.0.0.3:5000/login/${ID}/${password}` )
         .then(response => {
             console.log(response.data)
             if (response.data === 'NONUSER') {
