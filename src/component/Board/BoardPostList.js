@@ -1,20 +1,33 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import './BoardPostList.css';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BoardPagination from "./BoardPagination";
+import BoardList from "./BoardList";
 
 
 
 function BoardPostList() {
-    const navigate = useNavigate();
     const [ posts, setPosts ] = useState({});
+    const navigate = useNavigate();
     const limit = 10;
     const [ page, setPage ] = useState(1);
     const startat = ( page - 1 ) * limit;
+    const [searchWordKey, setSearchWordKey] = useState('title');
+    const [searchWord, setSearchWord] = useState('');
+
+    const handlerSearchWord = (e) => {setSearchWord(e.target.value);}
+    const handlerSearchWordKey = e => {setSearchWordKey(e.target.value);}
+    const clickSearButton = () => {
+        axios.get(`http://127.0.0.1:5000/boardlist/${searchWordKey}/${searchWord}`)
+        .then(responce => {
+            setPosts(responce.data)
+        }).catch(error => console.log(error));
+
+    }
 
     useEffect(() => {
-        axios.get('http://10.0.0.3:5000/boardlist')
+        axios.get('http://127.0.0.1:5000/boardlist')
         .then(responce => {
             setPosts(responce.data)
         }).catch(error => console.log(error));
@@ -33,7 +46,6 @@ function BoardPostList() {
         }
     }
     
-    const headersName = ['글 번호', '제목', '작성자', '지역', '작성일'];
 
     return (
         <>
@@ -41,29 +53,16 @@ function BoardPostList() {
             <div className="board_title">
                 <strong>공지사항</strong>
                 <p>공지사항을 빠르고 정확하게 알려드립니다.</p>
+                <select value={searchWordKey} onChange={handlerSearchWordKey}>
+                    <option key='title' value='title'>제목</option>
+                    <option key='ID' value='ID'>작성자</option>
+                    <option key='location' value='location'>위치</option>
+                </select>
+                <input type="text" placeholder="검색어를 입력해주세요." value={searchWord} onChange={handlerSearchWord}/>
+                <button onClick={clickSearButton}>검색</button>
             </div>
-            <div className="board_list_wrap">
-                <div className="board_list">
-                    <div className="top">
-                        <div className="num">글 번호</div>
-                        <div className="title">제목</div>
-                        <div className="writer">글쓴이</div>
-                        <div className="writer">지역</div>
-                        <div className="date">작성일</div>
-                    </div>
-                    {
-                    item.slice(startat, startat + limit ).map((post, idx) => (
-                        <div className="board_body" key={idx}>
-                            <div className="num">{post.boardId}</div>
-                            <div className="title" ><Link to={`/board/detail/${post.boardId}`} style={{ textDecoration: "none", color: "black"}}>{post.title}</Link></div>
-                            <div className="writer">{post.ID}</div>
-                            <div className="count">{post.location}</div>
-                            <div className="div">{post.createAt}</div>
-                        </div>
-                    ))
-                    }
-                </div>
-            </div>
+            <BoardList item={item} startat={startat} limit={limit} se />
+
         </div>
         
 

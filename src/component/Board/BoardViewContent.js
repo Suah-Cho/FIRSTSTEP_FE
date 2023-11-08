@@ -18,7 +18,7 @@ const BoardViewContent = ({boardId}) =>{
 
     // 게시판 데이터 가져오기
     useEffect(() => {
-        axios.get(`http://10.0.0.3:5000/board/detail/${boardId}`)
+        axios.get(`http://127.0.0.1:5000/board/detail/${boardId}`)
         .then(response => {
             if (response.data === 'DELETE') {
                 alert('삭제된 게시물입니다:)')
@@ -45,7 +45,7 @@ const BoardViewContent = ({boardId}) =>{
     //수정가능상태 edit=true
     const handlerEditFinish= () =>{
         // 수정완료 후 데이터 변경
-        axios.put(`http://10.0.0.3:5000/boardEdit/${boardId}`, {title : title, content : content}, { headers: { 'Content-Type': 'application/json' } })
+        axios.put(`http://127.0.0.1:5000/boardEdit/${boardId}`, {title : title, content : content}, { headers: { 'Content-Type': 'application/json' } })
         .then(response => {
             setEdit(!edit);
             console.log("HI I AM BOARDEDIT API");
@@ -58,7 +58,7 @@ const BoardViewContent = ({boardId}) =>{
     const handlerDel = () => {
         if (sessionStorage.getItem('userId') == boardData[0].userId) {
             // 게시물 삭제
-            axios.delete(`http://10.0.0.3:5000/boardDelete/${boardId}`)
+            axios.delete(`http://127.0.0.1:5000/boardDelete/${boardId}`)
             .then(response => {
                 // console.log("HI I AM BOARDDELETE API");
                 // console.log('handlerDel',response);

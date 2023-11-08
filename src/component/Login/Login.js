@@ -5,13 +5,13 @@ import './Login.css';
 
 const Login = () => {
     const [ ID, setID ] = useState('');
-    const [ PW, setPW ] = useState('');
+    const [ password, setPassword ] = useState('');
 
     const handlerID = e => { setID(e.target.value) }
-    const handlerPW = e => { setPW(e.target.value) }
+    const handlerPW = e => { setPassword(e.target.value) }
 
     const onClickLogin = () => {
-        axios.get(`http://10.0.0.3:5000/login/${ID}/${password}` )
+        axios.get(`http://127.0.0.1:5000/login/${ID}/${password}` )
         .then(response => {
             console.log(response.data)
             if (response.data === 'NONUSER') {
@@ -36,7 +36,7 @@ const Login = () => {
                 <h2>ID</h2>
                 <input type="text" placeholder="아이디를 입력해주세요." value={ID} onChange={handlerID} required/>
                 <h2>PW</h2>
-                <input type="password" placeholder="비밀번호를 입력해주세요." value={PW} onChange={handlerPW} required/>
+                <input type="password" placeholder="비밀번호를 입력해주세요." value={password} onChange={handlerPW} required/>
             </div>
             <div className="login_bt">
                 <button className="on" onClick={onClickLogin}>로그인</button>
