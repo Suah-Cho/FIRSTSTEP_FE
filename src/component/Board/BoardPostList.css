@@ -47,6 +47,37 @@ html {
     font-size: 1.4rem;
 }
 
+.board_search {
+    margin-top: 1rem;
+}
+
+.board_search select {
+    margin-left: 0.5rem;
+    margin-right: 1.5rem;
+    height: 3.5rem;
+    width: 11rem;
+    text-align: center;
+}
+
+.board_search input {
+    /* margin-right: 1.5rem; */
+    height: 3rem;
+    width: 81%;
+}
+
+.board_search button {
+    /* size: 2rem; */
+    height: 3.5rem;
+    margin-left: 1rem;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    vertical-align: bottom;
+}
+
+.board_title button:hover {
+    color: gray;
+}
 
 .board_list {
     width: 100%;
