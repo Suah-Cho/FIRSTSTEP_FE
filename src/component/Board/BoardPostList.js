@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import './BoardPostList.css';
 import { useNavigate } from "react-router-dom";
 import BoardPagination from "./BoardPagination";
@@ -53,13 +54,16 @@ function BoardPostList() {
             <div className="board_title">
                 <strong>공지사항</strong>
                 <p>공지사항을 빠르고 정확하게 알려드립니다.</p>
-                <select value={searchWordKey} onChange={handlerSearchWordKey}>
-                    <option key='title' value='title'>제목</option>
-                    <option key='ID' value='ID'>작성자</option>
-                    <option key='location' value='location'>위치</option>
-                </select>
-                <input type="text" placeholder="검색어를 입력해주세요." value={searchWord} onChange={handlerSearchWord}/>
-                <button onClick={clickSearButton}>검색</button>
+                <div className="board_search">
+                    <select value={searchWordKey} onChange={handlerSearchWordKey}>
+                        <option key='title' value='title'>제목</option>
+                        <option key='ID' value='ID'>작성자</option>
+                        <option key='location' value='location'>위치</option>
+                    </select>
+                    <input type="text" placeholder="검색어를 입력해주세요." value={searchWord} onChange={handlerSearchWord}/>
+                    <button type="submit" onClick={clickSearButton}><FaSearch /></button>
+                </div>
+                
             </div>
             <BoardList item={item} startat={startat} limit={limit} se />
 
