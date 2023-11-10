@@ -65,7 +65,7 @@ function BoardPostList() {
                 </div>
                 
             </div>
-            <BoardList item={item} startat={startat} limit={limit} se />
+            <BoardList item={item} startat={startat} limit={limit}/>
 
         </div>
         
