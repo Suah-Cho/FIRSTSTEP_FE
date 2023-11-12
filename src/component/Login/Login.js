@@ -17,10 +17,10 @@ const Login = () => {
             if (response.data === 'NON') {
                 alert('일치하는 회원정보가 없습니다. 회원가입을 해주세요:)');
                 document.location.href = '/signup'
-            } else if (response.data == 'SINGOUT') {
+            } else if (response.data === 'SINGOUT') {
                 alert('탈퇴된 회원입니다.')
                 document.location.href = '/signup'
-            } else if (response.data == 'WRONG') {
+            } else if (response.data === 'WRONG') {
                 alert('비밀번호가 틀렸습니다.')
                 document.location.href = '/login'
             } else {
