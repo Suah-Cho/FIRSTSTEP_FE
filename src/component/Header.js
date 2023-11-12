@@ -5,7 +5,6 @@ import axios from "axios";
 
 const Header = () => {
   const [ userId , setUserId ] = useState('');
-  const [ background, setBackGround ] = useState(false);
 
   const [ isLogin, setIsLogin ] = useState(false);
 

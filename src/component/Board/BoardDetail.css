@@ -28,7 +28,7 @@
     width: calc(100% - 100px);
 }
 .BoardViewContent .title textarea {
-        width: 100%;
+        width: 97%;
         height: 15px;
         border: none;
         overflow:hidden;
@@ -75,7 +75,7 @@
     border-bottom: 1px solid #000;
     line-height: 160%;
     font-size: 1.4rem;
-    width: 100%;
+    width: 97%;
     height: 20em;
     border: none;
     resize: none;
@@ -91,6 +91,8 @@
 } */
 /* BoardViewContent.js 버튼*/
 .BoardViewButtons {
+    width: 1000px;
+    height: 100px;
     margin-top: 30px;
     text-align: center;
     font-size: 0;
@@ -111,4 +113,8 @@
 .BoardViewButtons input.list {
     background: #1dc078;
     color: #fff;
+}
+.BoardViewButtons input.datePicker {
+    width: 100px;
+    border: 1px solid #868e96;
 }

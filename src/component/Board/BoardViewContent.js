@@ -2,6 +2,8 @@ import './BoardDetail.css'
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const BoardViewContent = ({boardId}) =>{
     // 게시판 상세정보 데이터
@@ -9,6 +11,9 @@ const BoardViewContent = ({boardId}) =>{
 
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
+
+    //반납 - 캘린더
+    const [returnDate, setReturnDate] = useState(new Date())
 
     const handlerChangeTitle = e => {setTitle(e.target.value)}
     const handlerChangeContent = e => {setContent(e.target.value)}
@@ -19,24 +24,59 @@ const BoardViewContent = ({boardId}) =>{
     // 게시판 데이터 가져오기
     useEffect(() => {
         axios.get(`http://127.0.0.1:5000/board/detail/${boardId}`)
-        .then(response => {
-            if (response.data === 'DELETE') {
+        .then(res => {
+            console.log("111111111111111111111111111111111111111111")
+            if (res.data === 'DELETE') {
                 alert('삭제된 게시물입니다:)')
                 navigate('/board');
-            } else {
-                setBoardData(response.data)
+            }
+            //로그인 x - 목록 buttonChk = 1
+            else if(sessionStorage.getItem('userId') == null ){
+                setButtonChk("1")
+                setBoardData(res.data)
+            }
+            //로그인 0
+            //로그인 0 - 로그인 user = 게시물 작성자 user
+            else if(Number(sessionStorage.getItem('userId')) === res.data[0]["userId"]){
+                alert("목록 / 수정 / 삭제")
+                console.log("2222222222222222222222222222222222222222222222222222222")
+                setButtonChk("2")
+                setBoardData(res.data)
+            }
+            //로그인 0 - 로그인 user != 게시물 작성자 user
+            else {
+                //게시물 : 대여가능한경우
+                if(res.data[0]["rent"] === "unactive"){    
+                    alert("대여")
+                    setButtonChk("3")       
+                }
+                 //게시물 : 대여중인경우
+                else{
+                    //게시물 : 대여중인경우 - 대여한 사람인경우
+                    if(res.data[0]["rentId"] === sessionStorage.getItem('userId')){
+                        alert("반납")
+                        setButtonChk("4")  
+                    }
+                    //게시물 : 대여중인경우 - 대여하지 않은 사람인경우
+                    else{
+                        alert("대여중")
+                        setButtonChk("5") 
+                    }
+                }
+                setBoardData(res.data)
             }
         }).catch(err => console.log(err));
     }, [])
 
     // 상태변수사용해서 textarea 활성하기
     const [edit,setEdit] = useState(true);
-    console.log('초기',edit)
 
+    //버튼 
+    const [buttonChk, setButtonChk] = useState("0")
 
     // 수정불가능상태 edit=false
     const handlerEdit = () => {
-        if (sessionStorage.getItem('userId') == boardData[0].userId) {
+        if (sessionStorage.getItem('userId') === boardData[0].userId) {
             setEdit(!edit);
         } else {
             alert('게시물 작성자만 수정이 가능합니다:)')
@@ -46,17 +86,16 @@ const BoardViewContent = ({boardId}) =>{
     const handlerEditFinish= () =>{
         // 수정완료 후 데이터 변경
         axios.put(`http://127.0.0.1:5000/boardEdit/${boardId}`, {title : title, content : content}, { headers: { 'Content-Type': 'application/json' } })
-        .then(response => {
+        .then(res => {
             setEdit(!edit);
-            console.log("HI I AM BOARDEDIT API");
-            console.log(response);
+            setBoardData(res.data)
         }).catch(err => console.log(err));
 
         // window.location.reload();
     }
     
     const handlerDel = () => {
-        if (sessionStorage.getItem('userId') == boardData[0].userId) {
+        if (sessionStorage.getItem('userId') === boardData[0].userId) {
             // 게시물 삭제
             axios.delete(`http://127.0.0.1:5000/boardDelete/${boardId}`)
             .then(response => {
@@ -72,6 +111,30 @@ const BoardViewContent = ({boardId}) =>{
         
     };    
     
+    const handlerRent =() => {
+        if (sessionStorage.getItem('userId') == null){
+            alert("로그인하신 후 이용해주세요");
+        }
+        else{
+            alert("대여 가능");
+        }
+    }
+    const handlerRenting =() => {
+        if (sessionStorage.getItem('userId') == null){
+            alert("대여중입니다.");
+        }
+        else{
+            alert("대여중입니다");
+        }
+    }
+    const handlerReturn =() => {
+        if (sessionStorage.getItem('userId') == null){
+            alert("물품을 반납합니다.");
+        }
+        else{
+            alert("물품을 반납합니다.");
+        }
+    }
     return(
         <>
             <div className="BoardViewContent">
@@ -79,7 +142,7 @@ const BoardViewContent = ({boardId}) =>{
                     <dl>
                         <dt>제목</dt>
                         <dd>
-                            {edit && (<textarea readOnly className="title" value={boardData[0].title}></textarea>)}
+                            {edit && (<textarea disabled className="title" value={boardData[0].title}></textarea>)}
                             {!edit  && (<textarea className="title" defaultValue={boardData[0].title} onChange={handlerChangeTitle}></textarea>)}
                         
                         </dd>
@@ -103,20 +166,34 @@ const BoardViewContent = ({boardId}) =>{
                         <dd>{boardData[0].location}</dd>
                     </dl>
                 </div>
-                {edit && (<textarea readOnly value={boardData[0].content}></textarea>)}
+                {edit && (<textarea disabled value={boardData[0].content}></textarea>)}
                 {!edit && (<textarea defaultValue={boardData[0].content} onChange={handlerChangeContent}></textarea>)}
                 
             </div>
-            {/* 버튼 목록 수정 삭제 수정완료 */}
+            
+            {/* 버튼 목록 수정 삭제 수정완료 대여 */}
             <div className="BoardViewButtons">
                 <Link to={'/board'} ><input type="button" id="back" className="list" value="목록"/></Link>
-                {/* 수정가능한상태 */}
-                {!edit && (<input type="button" id="edit" className="notList" value="수정완료" onClick={handlerEditFinish} />)}
-                {/* 수정불가능한상태 */}
-                {edit && (<input type="button" id="edit" className="notList" value="수정하기" onClick={handlerEdit} />
-                )}
-                {edit && (<input type="button" id="delete" className="notList" value="삭제" onClick={handlerDel} />
-                )}
+                    
+                    {/* {게시물 작성자 = 사용자} */}
+                    {/* 수정가능한상태 */}
+                    {(buttonChk==="2")&& (!edit) && (<input type="button" id="edit" className="notList" value="수정완료" onClick={handlerEditFinish} />)}
+                    {/* 수정불가능한상태 */}
+                    {(buttonChk==="2")&&(edit) && (<input type="button" id="edit" className="notList" value="수정하기" onClick={handlerEdit} />
+                    )}
+                    {(buttonChk==="2")&&(edit) && (<input type="button" id="delete" className="notList" value="삭제" onClick={handlerDel} />
+                    )}
+
+                    {/* {게시물 작성자 != 사용자} */}
+                    {(buttonChk==="5")&&(<input type="button" id="renting" className="notList" value="대여중" onClick={handlerRenting} />
+                    )}
+                    {(buttonChk==="4")&&(<input type="button" id="return" className="notList" value="반납" onClick={handlerReturn} />
+                    )}
+                    {(buttonChk==="4")&&(<DatePicker className='datePicker' selected={returnDate} onChange={date => setReturnDate(date)}><div style={{ color: "red" }}>Don't forget to check your return date!</div></DatePicker>
+                    )}
+
+                    {(buttonChk==="3")&&(<input type="button" id="rent" className="notList" value="대여" onClick={handlerRent} />
+                    )}
             </div>
         </>
     );
