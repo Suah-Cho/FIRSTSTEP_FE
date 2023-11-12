@@ -1,0 +1,51 @@
+.comment_write {
+    margin-top: 3rem;
+    margin-left: 16.5rem;
+}
+
+.comment_write input {
+    height: 3rem;
+    width: 600px;
+}
+
+.comment_write button {
+    height: 3.5rem;
+    margin-left: 1rem;
+    border: none;
+    font-size: 3rem;
+    cursor: pointer;
+    vertical-align: bottom;
+}
+
+.comment_list {
+    width: 65%;
+    margin-top: 1rem;
+    margin-left: 16.5rem;
+    margin-bottom: 1rem;
+}
+
+.comment_list button {
+    float: right;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    vertical-align: middle;
+    border: none;
+}
+
+.comment_list>div {
+    font-size: 1.5rem;
+}
+
+.comment_list>div>div {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.3rem;
+    color: gray;
+    margin-bottom: 1rem;
+
+}
+
+.comment_list .date {
+    float: right;
+    /* width: 15%; */
+}
