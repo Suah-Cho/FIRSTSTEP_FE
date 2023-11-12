@@ -54,7 +54,7 @@ const BoardViewContent = ({boardId}) =>{
                  //게시물 : 대여중인경우
                 else{
                     //게시물 : 대여중인경우 - 대여한 사람인경우
-                    if(res.data[0]["rentId"] === sessionStorage.getItem('userId')){
+                    if(res.data[0]["rentId"] == sessionStorage.getItem('userId')){
                         alert("반납")
                         setButtonChk("4")  
                     }
@@ -77,7 +77,7 @@ const BoardViewContent = ({boardId}) =>{
 
     // 수정불가능상태 edit=false
     const handlerEdit = () => {
-        if (sessionStorage.getItem('userId') === boardData[0].userId) {
+        if (sessionStorage.getItem('userId') == boardData[0].userId) {
             setEdit(!edit);
         } else {
             alert('게시물 작성자만 수정이 가능합니다:)')
@@ -96,7 +96,7 @@ const BoardViewContent = ({boardId}) =>{
     }
     
     const handlerDel = () => {
-        if (sessionStorage.getItem('userId') === boardData[0].userId) {
+        if (sessionStorage.getItem('userId') == boardData[0].userId) {
             // 게시물 삭제
             axios.delete(`http://127.0.0.1:5000/boardDelete/${boardId}`)
             .then(response => {
