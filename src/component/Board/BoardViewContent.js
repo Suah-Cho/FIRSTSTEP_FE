@@ -2,8 +2,6 @@ import './BoardDetail.css'
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 const BoardViewContent = ({boardId}) =>{
     // 게시판 상세정보 데이터
@@ -170,8 +168,7 @@ const BoardViewContent = ({boardId}) =>{
                 {!edit && (<textarea defaultValue={boardData[0].content} onChange={handlerChangeContent}></textarea>)}
                 
             </div>
-            
-            {/* 버튼 목록 수정 삭제 수정완료 대여 */}
+            {/* 버튼 목록 수정 삭제 수정완료 */}
             <div className="BoardViewButtons">
                 <Link to={'/board'} ><input type="button" id="back" className="list" value="목록"/></Link>
                     
