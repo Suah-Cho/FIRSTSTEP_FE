@@ -9,6 +9,7 @@ import Login from "./component/Login/Login";
 import SignUp from "./component/SignUp/signup";
 import SignOut from "./component/SignUp/Signout";
 import LoginOut from "./component/Login/Logout";
+import Mypage from "./component/Mypage/Mypage"
 
 function App() {
   // const [ session, setSession ] = useState('suah');
@@ -26,6 +27,7 @@ function App() {
           <Route path='/signup' element={<SignUp/>} />
           <Route path='/signout' element={<SignOut />} />
           <Route path='/logout' element={<LoginOut />} />
+          <Route path="/mypage" element={<Mypage/>} />
         </Route>
       </Routes>
     </>
