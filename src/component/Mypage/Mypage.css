@@ -1,0 +1,67 @@
+.mypage_list_wrap{
+    background-color: #F8F8F8;
+    width: 1000px;
+    margin: 30px auto;  
+}
+.greenContainer{  
+    height: 60px;
+    background-color: #24855b;    
+    
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  .greenContainer .name{
+    font-size: 20px;
+   font-weight: bold;
+   color: #ffffff;
+ }
+ .greenContainer .pwChange{
+    margin-left: auto;
+  }
+  .rentList{
+    padding: 21px 16px;
+    background-color: white;
+    margin-bottom: 10px;
+  }
+  .rentList .title{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+.rentList .list{
+width: 100%;
+border-top: 2px solid #868e96;
+}
+.rentList .list>div.top {
+    border-bottom: 1px solid #999;
+}
+.rentList .list>div:last-child {
+    border-bottom: 1px solid #868e96;
+}
+.rentList .list>div>div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1.4rem;
+}
+.rentList .list>div.top>div {
+    font-weight: 600;
+}
+.rentList .list .list_rent {
+    width: 60%;
+    text-align: left;
+    padding-left: 20px;
+}
+.rentList .list .top .list_rent {
+    text-align: left;
+}
+.rentList .list .writer {
+    width: 12%;
+}
+.rentList .list .returnAt {
+    width: 12%;
+}
+.rentList .list .rentAt {
+    width: 12%;
+}
