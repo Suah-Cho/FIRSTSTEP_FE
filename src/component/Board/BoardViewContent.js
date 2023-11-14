@@ -179,7 +179,9 @@ const BoardViewContent = ({boardId}) =>{
                 {!edit && (<textarea defaultValue={boardData[0].content} onChange={handlerChangeContent}></textarea>)}
                 
             </div>
-            {/* 버튼 목록 수정 삭제 수정완료 */}
+
+            <Comment boardId={boardId}/>
+
             <div className="BoardViewButtons">
                 <Link to={'/board'} ><input type="button" id="back" className="list" value="목록"/></Link>
                 <Comment boardId={boardId}/>
