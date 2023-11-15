@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './ChangePassword.css';
 import axios from "axios";
 
@@ -7,6 +7,9 @@ const ChangePassword = () => {
     const [constpassword, setConstPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+    const navigate = useNavigate();
+
 
     const handlerPassword = e => {setConstPassword(e.target.value)}
     const handlerNewPassword = e => {setNewPassword(e.target.value)}
@@ -19,10 +22,12 @@ const ChangePassword = () => {
             console.log(response)
             if (response.data === "SUCCESS") {
                 alert('비밀번호가 성공적으로 변경되었습니다.')
+                navigate(-1)
             }
         }).catch(error => {
             console.log(error)
             alert('비밀번호 변경에 실패했습니다.')
+            navigate(0)
         })
     }
 
