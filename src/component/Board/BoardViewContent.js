@@ -146,6 +146,7 @@ const BoardViewContent = ({boardId}) =>{
     }
     return(
         <>
+        <div className='BoardView'>
             <div className="BoardViewContent">
                 <div className='title'>
                     <dl>
@@ -179,9 +180,10 @@ const BoardViewContent = ({boardId}) =>{
                 {!edit && (<textarea defaultValue={boardData[0].content} onChange={handlerChangeContent}></textarea>)}
                 
             </div>
-            
+            <div className='comment'>
             <Comment boardId={boardId}/>
-
+            </div>
+            </div>
             <div className="BoardViewButtons">
                 <Link to={'/board'} ><input type="button" id="back" className="list" value="목록"/></Link>
                 {/* {게시물 작성자 = 사용자} */}
@@ -204,6 +206,7 @@ const BoardViewContent = ({boardId}) =>{
                 {(buttonChk=="3")&&(<input type="button" id="rent" className="notList" value="대여" onClick={handlerRent} />
                 )}
             </div>
+        
         </>
     );
 };

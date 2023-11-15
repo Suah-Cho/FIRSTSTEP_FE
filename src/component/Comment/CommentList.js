@@ -21,8 +21,9 @@ const CommentList = ({comment, idx, isuser}) => {
             <div className='comment_list' key={idx}>
                 <div>
                     <div>{comment.ID}</div>
-                    <div className='date'>{comment.createAt}</div>
+                   
                     {isuser && (<button type='submit' onClick={clickDeleteComment}><RiDeleteBin2Fill/></button>)}
+                    <div className='date'>{comment.createAt}</div>  
                 </div>
                 <div>{comment.content}</div>
             </div>

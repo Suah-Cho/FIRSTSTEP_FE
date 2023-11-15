@@ -3,9 +3,13 @@
     width: 1000px;
     margin: 30px auto;
 }
+.BoardView {
+    width: 1000px;
+    display: flex;
+}
 /* BoardViewContent.js 게시물*/
 .BoardViewContent {
-    width: 100%;
+    width: 70%;
     border-top: 2px solid #000;
     border-bottom: 2px solid #000;
 }
@@ -89,6 +93,13 @@
     border: 0;
     resize: vertical;
 } */
+.comment {
+    margin-left: 10px;
+    width: 30%;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+
+}
 /* BoardViewContent.js 버튼*/
 .BoardViewButtons {
     width: 1000px;

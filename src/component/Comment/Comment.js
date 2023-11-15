@@ -3,7 +3,7 @@ import CommentWrite from "./ComentWrite";
 import CommentList from "./CommentList";
 import axios from "axios";
 import CommentPagination from "./CommentPagination";
-
+import './Comment.css'
 const Comment = ({boardId}) => {
     const [ comments, setComments ] = useState({});
     const [ page, setPage ] = useState(1);
@@ -24,7 +24,7 @@ const Comment = ({boardId}) => {
 
     return (
         <>
-            <CommentWrite boardId={boardId} />
+        <div className="comment_wrap">          
 
             {
                 item.slice(startat, startat + limit ).map((comment, idx) => {
@@ -35,8 +35,9 @@ const Comment = ({boardId}) => {
                     }
                 })
             }
-
+            <CommentWrite boardId={boardId} />
             <CommentPagination total={item.length} limit={limit} page={page} setPage={setPage} />
+        </div>
         </>
     );
 }

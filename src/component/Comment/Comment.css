@@ -1,35 +1,40 @@
 .comment_write {
-    margin-top: 3rem;
-    margin-left: 16.5rem;
+   margin: 1rem;
+   margin-top: 3rem;
 }
 
 .comment_write input {
-    height: 3rem;
-    width: 600px;
+    height: 3rem; 
+    width: 200px;
 }
 
 .comment_write button {
-    height: 3.5rem;
+    height: 35px;
     margin-left: 1rem;
     border: none;
     font-size: 3rem;
     cursor: pointer;
     vertical-align: bottom;
+    background: none;
 }
-
+.comment_wrap {
+    height : 90%;
+}
 .comment_list {
-    width: 65%;
-    margin-top: 1rem;
-    margin-left: 16.5rem;
-    margin-bottom: 1rem;
+    width: 90%;
+    margin-left: 0.5rem;
+    /* margin : 1rem; */
+    padding: 1rem;
+    border-bottom: 2px dotted gray;
 }
 
 .comment_list button {
     float: right;
     margin-right: 1rem;
     font-size: 1.5rem;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     border: none;
+    background: none;
 }
 
 .comment_list>div {
@@ -48,4 +53,27 @@
 .comment_list .date {
     float: right;
     /* width: 15%; */
+}
+
+
+.comment_page {
+    margin : 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.comment_page button {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+
+.comment_page button:hover {
+    background-color: lightgray;
+    cursor: pointer;
 }
