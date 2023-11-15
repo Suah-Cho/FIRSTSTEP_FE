@@ -179,13 +179,9 @@ const BoardViewContent = ({boardId}) =>{
                 {!edit && (<textarea defaultValue={boardData[0].content} onChange={handlerChangeContent}></textarea>)}
                 
             </div>
-<<<<<<<<< Temporary merge branch 1
-
+            
             <Comment boardId={boardId}/>
 
-=========
-            {/* 버튼 목록 수정 삭제 수정완료 */}
->>>>>>>>> Temporary merge branch 2
             <div className="BoardViewButtons">
                 <Link to={'/board'} ><input type="button" id="back" className="list" value="목록"/></Link>
                 {/* {게시물 작성자 = 사용자} */}
