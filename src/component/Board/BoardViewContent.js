@@ -156,6 +156,7 @@ const BoardViewContent = ({boardId}) =>{
     }
     return(
         <>
+        <div className='BoardView'>
             <div className="BoardViewContent">
                 <div className='title'>
                     <dl>
@@ -189,9 +190,10 @@ const BoardViewContent = ({boardId}) =>{
                 {!edit && (<textarea defaultValue={boardData[0].content} onChange={handlerChangeContent}></textarea>)}
                 
             </div>
-
+            <div className='comment'>
             <Comment boardId={boardId}/>
-
+            </div>
+            </div>
             <div className="BoardViewButtons">
                 <Link to={'/board'} ><input type="button" id="back" className="list" value="목록"/></Link>
                 {/* {게시물 작성자 = 사용자} */}
@@ -214,6 +216,7 @@ const BoardViewContent = ({boardId}) =>{
                 {(buttonChk=="3")&&(<DatePicker dateFormat='yyyy/MM/dd' minDate={new Date()} className='datePicker' selected={returnDate} onChange={date => setReturnDate(date)}><div style={{ color: "red" }}>Don't forget to check your return date!</div></DatePicker>
                 )}
             </div>
+        
         </>
     );
 };
