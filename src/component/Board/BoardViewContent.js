@@ -38,7 +38,7 @@ const BoardViewContent = ({boardId}) =>{
     useEffect(() => {
         axios.get(`http://127.0.0.1:5000/board/detail/${boardId}`)
         .then(res => {
-            console.log("111111111111111111111111111111111111111111")
+            // console.log("111111111111111111111111111111111111111111")
             if (res.data == 'DELETE') {
                 alert('삭제된 게시물입니다:)')
                 navigate('/board');
@@ -51,7 +51,7 @@ const BoardViewContent = ({boardId}) =>{
             //로그인 0
             //로그인 0 - 로그인 user = 게시물 작성자 user
             else if(Number(sessionStorage.getItem('userId')) == res.data[0]["userId"]){
-                alert("목록 / 수정 / 삭제")
+                // alert("목록 / 수정 / 삭제")
                 console.log(sessionStorage.getItem('userId'),"==",res.data[0]["userId"], "=> ", (sessionStorage.getItem('userId')==res.data[0]["userId"]))
                 setButtonChk("2")
                 setBoardData(res.data)
@@ -59,20 +59,22 @@ const BoardViewContent = ({boardId}) =>{
             //로그인 0 - 로그인 user != 게시물 작성자 user
             else {
                 //게시물 : 대여가능한경우
-                if(res.data[0]["rent"] == "unactive"){    
-                    alert("대여")
+                if(res.data[0]["rent"] == "active"){    
+                    // alert("대여")
                     setButtonChk("3")       
+                } else if (res.data[0]['rent'] == 'disable') {
+                    setButtonChk("0")
                 }
                  //게시물 : 대여중인경우
                 else{
                     //게시물 : 대여중인경우 - 대여한 사람인경우
-                    if(res.data[0]["rentId"] == sessionStorage.getItem('userId')){
-                        alert("반납")
+                    if(res.data[0]["rentusreId"] == sessionStorage.getItem('userId')){
+                        // alert("반납")
                         setButtonChk("4")  
                     }
                     //게시물 : 대여중인경우 - 대여하지 않은 사람인경우
                     else{
-                        alert("대여중")
+                        // alert("대여중")
                         setButtonChk("5") 
                     }
                 }
@@ -125,24 +127,32 @@ const BoardViewContent = ({boardId}) =>{
             alert("로그인하신 후 이용해주세요");
         }
         else{
-            alert("대여 가능");
+            // alert("대여 가능");
+            console.log(returnDate)
+            axios.put(`http://127.0.0.1:5000/boardrent/${sessionStorage.getItem('userId')}`, {boardId:boardId, returnDate:returnDate}, { headers: { 'Content-Type': 'application/json' } })
+            .then(response => {
+                console.log(response.data)
+                if (response.data === 'SUCCESS') {
+                    alert('대여를 완료했습니다.')
+                    navigate(0)
+                }
+            }).catch(error => console.log(error))
         }
     }
     const handlerRenting =() => {
-        if (sessionStorage.getItem('userId') == null){
-            alert("대여중입니다.");
-        }
-        else{
-            alert("대여중입니다");
-        }
+        alert("대여 중 입니다.")
     }
     const handlerReturn =() => {
-        if (sessionStorage.getItem('userId') == null){
-            alert("물품을 반납합니다.");
-        }
-        else{
-            alert("물품을 반납합니다.");
-        }
+        
+        axios.delete(`http://127.0.0.1:5000/boardreturn/${boardId}`)
+        .then(response => {
+            console.log(response.data)
+            if (response.data === 'SUCCESS') {
+                alert('물품을 반납했습니다.');
+                navigate(0);
+            }
+        }).catch(error => console.log(error))
+
     }
     return(
         <>
@@ -198,10 +208,10 @@ const BoardViewContent = ({boardId}) =>{
                 )}
                 {(buttonChk=="4")&&(<input type="button" id="return" className="notList" value="반납" onClick={handlerReturn} />
                 )}
-                {(buttonChk=="4")&&(<DatePicker className='datePicker' selected={returnDate} onChange={date => setReturnDate(date)}><div style={{ color: "red" }}>Don't forget to check your return date!</div></DatePicker>
-                )}
-
+            
                 {(buttonChk=="3")&&(<input type="button" id="rent" className="notList" value="대여" onClick={handlerRent} />
+                )}
+                {(buttonChk=="3")&&(<DatePicker dateFormat='yyyy/MM/dd' minDate={new Date()} className='datePicker' selected={returnDate} onChange={date => setReturnDate(date)}><div style={{ color: "red" }}>Don't forget to check your return date!</div></DatePicker>
                 )}
             </div>
         </>
