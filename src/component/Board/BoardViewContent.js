@@ -188,7 +188,6 @@ const BoardViewContent = ({boardId}) =>{
 >>>>>>>>> Temporary merge branch 2
             <div className="BoardViewButtons">
                 <Link to={'/board'} ><input type="button" id="back" className="list" value="목록"/></Link>
-                <Comment boardId={boardId}/>
                 {/* {게시물 작성자 = 사용자} */}
                 {/* 수정가능한상태 */}
                 {(buttonChk=="2")&& (!edit) && (<input type="button" id="edit" className="notList" value="수정완료" onClick={handlerEditFinish} />)}
