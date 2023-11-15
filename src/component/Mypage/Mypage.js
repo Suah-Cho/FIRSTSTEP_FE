@@ -31,7 +31,7 @@ const Mypage = () => {
                     <div class="user">user</div>
                     <div class="name">{userName}</div>
                     </div>    
-                    <div class="pwChange">비밀번호 변경</div>    
+                    <div class="pwChange"><Link to='/changepassword' style={{ textDecoration: "none", color: "white"}}>비밀번호 변경</Link></div>
                 </div>
                 <div className="rentList">
                     <div class="title">대여현황

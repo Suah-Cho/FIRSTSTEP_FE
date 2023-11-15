@@ -10,6 +10,7 @@ import SignUp from "./component/SignUp/signup";
 import SignOut from "./component/SignUp/Signout";
 import LoginOut from "./component/Login/Logout";
 import Mypage from "./component/Mypage/Mypage"
+import ChangePassword from "./component/Mypage/ChangePassword";
 
 function App() {
   // const [ session, setSession ] = useState('suah');
@@ -28,6 +29,7 @@ function App() {
           <Route path='/signout' element={<SignOut />} />
           <Route path='/logout' element={<LoginOut />} />
           <Route path="/mypage" element={<Mypage/>} />
+          <Route path="/changepassword" element={<ChangePassword />} />
         </Route>
       </Routes>
     </>
