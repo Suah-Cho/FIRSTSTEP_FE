@@ -46,6 +46,8 @@ const Header = () => {
               {isLogin && <Link to='/signout'> <button>|   회원탈퇴   | </button></Link> }
               {!isLogin &&<Link to='/login'> <button>|   로그인   | </button></Link>}
               {!isLogin &&<Link to='/signup'> <button>|   회원가입   | </button></Link>}
+              {isLogin &&<Link to='/mypage'> <button>|   마이페이지   | </button></Link>}
+              
               </div>
           </div>
         </div>   
