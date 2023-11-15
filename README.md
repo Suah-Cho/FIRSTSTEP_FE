@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# FIRSTSTEP 한걸음 대여소
+## 서비스 소개
+필요한 물폼 혹은 필요 없는 물품을 서로 공유하며 더 좋은 세상으로 한 걸음 나아가는 커뮤니티
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+## 기능 
+- 게시판 등록/수정/보기/삭제
+- 로그인/로그아웃
+- 회원가입/회원탈퇴
+- 마이페이지(대여물품 조회, 비밀번호 변경)
+- 게시물 대여/반납
 
-### `npm start`
+## 팀원
+|이름|담당|
+|:---:|:---:|
+|곽민주|마이페이지(대여 목록 조회), 게시물 조회/수정/삭제, 게시물 대여/반납|
+|조수아|데이터베이스, 게시판, 게시물 대여/반납, 로그인/로그아웃, 회원탈퇴, 마이페이지(비밀번호 변경)|
+|김기성|로그인|
+|김서연|팀장, 데이터베이스, 회원가입|
+|신명호|홈|
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 아키텍처
+![Alt text](image-1.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 데이터베이스
+![Alt text](image.png)
 
-### `npm test`
+## 기술 스택
+### Front-end
+![Static Badge](https://img.shields.io/badge/React-%2361DAFB?logo=react&logoColor=white)
+![Static Badge](https://img.shields.io/badge/HTML5-%23E34F26?logo=html5&logoColor=white)
+![Static Badge](https://img.shields.io/badge/CSS3-%231572B6?logo=css3&logoColor=white)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Backend
+![Static Badge](https://img.shields.io/badge/Python3-3776AB?logo=Python&logoColor=%23FFFFFF) ![Static Badge](https://img.shields.io/badge/Flask-000000?logo=Flask&logoColor=%23FFFFFF)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Database
+![Static Badge](https://img.shields.io/badge/MySQL-%234479A1?logo=mysql&logoColor=white)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Infra
+![Static Badge](https://img.shields.io/badge/Docker-%232496ED?logo=docker&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Kubernetes-%23326CE5?logo=kubernetes&logoColor=white)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
