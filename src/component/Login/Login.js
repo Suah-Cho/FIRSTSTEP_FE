@@ -14,12 +14,15 @@ const Login = () => {
         axios.get(`http://127.0.0.1:5000/login/${ID}/${password}` )
         .then(response => {
             console.log(response.data)
-            if (response.data === 'NONUSER') {
-                alert('회원가입을 해주세요:)');
+            if (response.data === 'NON') {
+                alert('일치하는 회원정보가 없습니다. 회원가입을 해주세요:)');
                 document.location.href = '/signup'
-            } else if (response.data == 'SIGNOUTUSER') {
+            } else if (response.data === 'SINGOUT') {
                 alert('탈퇴된 회원입니다.')
-                document.location.href = '/'
+                document.location.href = '/signup'
+            } else if (response.data === 'WRONG') {
+                alert('비밀번호가 틀렸습니다.')
+                document.location.href = '/login'
             } else {
                 console.log(response.data.userId, response.data.ID);
                 sessionStorage.setItem('userId', response.data.userId);

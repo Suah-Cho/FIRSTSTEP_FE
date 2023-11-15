@@ -17,7 +17,7 @@ const BoardWrite = () => {
     const handlerChangeContent = e => {setContent(e.target.value)}
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:5000/checkid',{userId : sessionStorage.getItem('userId')} )
+        axios.get(`http://127.0.0.1:5000/checkid/${sessionStorage.getItem('userId')}`)
         .then(responce => {
             setUserId(responce.data.ID)
         }).catch(error => console.log(error));
@@ -31,7 +31,7 @@ const BoardWrite = () => {
         } else if (location === '') {
             alert('지역을 입력해주세요.');
         } else {
-            axios.post('/boardWrite', {title : title, location : location, content : content, userId : sessionStorage.getItem('userId') }, { headers: { 'Content-Type': 'application/json' } })
+            axios.post('http://127.0.0.1:5000/boardWrite', {title : title, location : location, content : content, userId : sessionStorage.getItem('userId') }, { headers: { 'Content-Type': 'application/json' } })
             .then(response => {
                 console.log(response);
                 goBoardPostList();
