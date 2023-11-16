@@ -26,12 +26,13 @@ const Mypage = () => {
     return (
         <>
             <div className="mypage_list_wrap">
-                <div class="greenContainer">
-                    <div>
-                    <div class="user">user</div>
-                    <div class="name">{userName}</div>
-                    </div>    
-                    <div class="pwChange"><Link to='/changepassword' style={{ textDecoration: "none", color: "white"}}>비밀번호 변경</Link></div>
+                <div className="greenContainer">
+                    <div className="name">{userName}</div>
+                    {/* <Link to={'/board'} ><input type="button" id="back" className="list" value="목록"/></Link> */}
+                    <div className="pwChange">
+                        <Link to='/changepassword'><input type="button" className="pwChange" value="비밀번호변경"/></Link>    
+                    </div>
+                    {/* <div class="pwChange"><Link to='/changepassword' style={{ textDecoration: "none", color: "white"}}>비밀번호 변경</Link></div> */}
                 </div>
                 <div className="rentList">
                     <div class="title">대여현황

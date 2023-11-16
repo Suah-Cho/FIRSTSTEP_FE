@@ -12,9 +12,9 @@ const BoardViewContent = ({boardId}) =>{
 
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
-
+    const today = new Date()
     //반납 - 캘린더
-    const [returnDate, setReturnDate] = useState(new Date())
+    const [returnDate, setReturnDate] = useState(new Date(today.setDate(today.getDate() + 7)))
 
 
 
@@ -213,6 +213,7 @@ const BoardViewContent = ({boardId}) =>{
             
                 {(buttonChk=="3")&&(<input type="button" id="rent" className="notList" value="대여" onClick={handlerRent} />
                 )}
+
                 {(buttonChk=="3")&&(<DatePicker dateFormat='yyyy/MM/dd' minDate={new Date()} className='datePicker' selected={returnDate} onChange={date => setReturnDate(date)}><div style={{ color: "red" }}>Don't forget to check your return date!</div></DatePicker>
                 )}
             </div>

@@ -55,7 +55,7 @@ const ChangePassword = () => {
             <h1>비밀번호 변경</h1>
             <div className="changepassword_info">
                 <h2>현재 비밀번호</h2>
-                <input type="text" placeholder="현재 비밀번호를 입력해주세요." value={constpassword} onChange={handlerPassword} required/>
+                <input type="password" placeholder="현재 비밀번호를 입력해주세요." value={constpassword} onChange={handlerPassword} required/>
                 <h2>새로운 비밀번호</h2>
                 <input type="password" placeholder="새로운 비밀번호를 입력해주세요." value={newPassword} onChange={handlerNewPassword} required/>
                 <h2>새로운 비밀번호 확인</h2>

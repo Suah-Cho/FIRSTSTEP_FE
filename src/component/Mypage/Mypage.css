@@ -16,19 +16,21 @@
    font-weight: bold;
    color: #ffffff;
  }
- .greenContainer .pwChange{
+.greenContainer .pwChange {
     margin-left: auto;
-  }
-  .rentList{
-    padding: 21px 16px;
-    background-color: white;
-    margin-bottom: 10px;
-  }
-  .rentList .title{
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
+    font-size: 1rem;
+    color: #24855b;
+}
+.rentList{
+padding: 21px 16px;
+background-color: white;
+margin-bottom: 10px;
+}
+.rentList .title{
+font-size: 16px;
+font-weight: bold;
+margin-bottom: 15px;
+}
 .rentList .list{
 width: 100%;
 border-top: 2px solid #868e96;
