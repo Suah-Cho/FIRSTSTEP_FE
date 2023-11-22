@@ -10,11 +10,12 @@ const CommentWrite = ({boardId}) => {
     const [comment, setComment ] = useState('');
     const handlerComment = e => {setComment(e.target.value)}
     const clickComment = () => {
-        if ( sessionStorage.getItem('userId') === null ) {
+        console.log(sessionStorage.getItem('token'))
+        if ( sessionStorage.getItem('token') === null ) {
             alert('로그인을 해주세요:)');
             navigate('/login');
         } else {
-            axios.post('http://127.0.0.1:5000/commentWrite',{userId:sessionStorage.getItem('userId'), boardId:boardId, content:comment, })
+            axios.post('http://127.0.0.1:5000/commentWrite',{token:sessionStorage.getItem('token'), boardId:boardId, content:comment })
             .then(response => {
                 console.log(response.data);
                 alert('댓글입력이 완료되었습니다.');

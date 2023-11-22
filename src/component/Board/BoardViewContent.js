@@ -9,6 +9,10 @@ import Comment from '../Comment/Comment';
 const BoardViewContent = ({boardId}) =>{
     // 게시판 상세정보 데이터
     const [ boardData, setBoardData] = useState([{}]);
+    const [ userData, setUserData] = useState([{}]);
+
+    // const [ userId, setUserId ] = useState('');
+    // const [ ID, setID ] = useState('');
 
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
@@ -36,39 +40,49 @@ const BoardViewContent = ({boardId}) =>{
 
     // 게시판 데이터 가져오기
     useEffect(() => {
-        axios.get(`http://127.0.0.1:5000/board/detail/${boardId}`)
+        // axios.get(`http://127.0.0.1:5000/checkid/${sessionStorage.getItem('token')}`)
+        // .then(responce => {
+        //     setID(responce.data.ID)
+        //     setUserId(responce.data.userId)
+        //     console.log("세션 확인:", responce.data.ID, responce.data.userId)
+
+        // }).catch(error => console.log(error));
+
+        axios.get(`http://127.0.0.1:5000/board/detail/${boardId}/${sessionStorage.getItem('token')}`)
         .then(res => {
-            // console.log("111111111111111111111111111111111111111111")
+            console.log(res)
+            console.log(res.data.userData['userId'], res.data.boardData["userId"])
+            setUserData(res.data.userData)
             if (res.data == 'DELETE') {
                 alert('삭제된 게시물입니다:)')
                 navigate('/board');
             }
             //로그인 x - 목록 buttonChk = 1
-            else if(sessionStorage.getItem('userId') == null ){
+            else if(sessionStorage.getItem('token') == null ){
                 setButtonChk("1")
-                setBoardData(res.data)
+                setBoardData(res.data.boardData)
             }
             //로그인 0
             //로그인 0 - 로그인 user = 게시물 작성자 user
-            else if(Number(sessionStorage.getItem('userId')) == res.data[0]["userId"]){
+            else if(res.data.userData['userId'] == res.data.boardData["userId"]){
                 // alert("목록 / 수정 / 삭제")
-                console.log(sessionStorage.getItem('userId'),"==",res.data[0]["userId"], "=> ", (sessionStorage.getItem('userId')==res.data[0]["userId"]))
+                // console.log(userId,"==",res.data[0]["userId"], "=> ", (userId==res.data[0]["userId"]))
                 setButtonChk("2")
-                setBoardData(res.data)
+                setBoardData(res.data.boardData)
             }
             //로그인 0 - 로그인 user != 게시물 작성자 user
             else {
                 //게시물 : 대여가능한경우
-                if(res.data[0]["rent"] == "active"){    
+                if(res.data.boardData["rent"] == "active"){    
                     // alert("대여")
                     setButtonChk("3")       
-                } else if (res.data[0]['rent'] == 'disable') {
+                } else if (res.data.boardData['rent'] == 'disable') {
                     setButtonChk("0")
                 }
                  //게시물 : 대여중인경우
                 else{
                     //게시물 : 대여중인경우 - 대여한 사람인경우
-                    if(res.data[0]["rentusreId"] == sessionStorage.getItem('userId')){
+                    if(res.data.boardData["rentusreId"] == res.data.userData['userId']){
                         // alert("반납")
                         setButtonChk("4")  
                     }
@@ -78,7 +92,7 @@ const BoardViewContent = ({boardId}) =>{
                         setButtonChk("5") 
                     }
                 }
-                setBoardData(res.data)
+                setBoardData(res.data.boardData)
             }
         }).catch(err => console.log(err));
     }, [])
@@ -96,22 +110,24 @@ const BoardViewContent = ({boardId}) =>{
     //수정가능상태 edit=true
     const handlerEditFinish= () =>{
         // 수정완료 후 데이터 변경
+        console.log("수정 : ", boardId, title, content)
         axios.put(`http://127.0.0.1:5000/boardEdit/${boardId}`, {title : title, content : content}, { headers: { 'Content-Type': 'application/json' } })
         .then(res => {
             setEdit(!edit);
-            setBoardData(res.data)
+            // console.log(res)
+            setBoardData(res.data.boardData[0])
         }).catch(err => console.log(err));
 
         // window.location.reload();
+        navigate(0)
     }
     
     const handlerDel = () => {
-        if (sessionStorage.getItem('userId') == boardData[0].userId) {
+        if ( userData.userId == boardData.userId) {
             // 게시물 삭제
             axios.delete(`http://127.0.0.1:5000/boardDelete/${boardId}`)
             .then(response => {
-                // console.log("HI I AM BOARDDELETE API");
-                // console.log('handlerDel',response);
+
             }).catch(err => console.log(err));
 
             alert('삭제되었습니다.');
@@ -123,13 +139,13 @@ const BoardViewContent = ({boardId}) =>{
     };    
     
     const handlerRent =() => {
-        if (sessionStorage.getItem('userId') == null){
+        if (userData.userId == null){
             alert("로그인하신 후 이용해주세요");
         }
         else{
             // alert("대여 가능");
             console.log(returnDate)
-            axios.put(`http://127.0.0.1:5000/boardrent/${sessionStorage.getItem('userId')}`, {boardId:boardId, returnDate:returnDate}, { headers: { 'Content-Type': 'application/json' } })
+            axios.put(`http://127.0.0.1:5000/boardrent/${userData.userId}`, {boardId:boardId, returnDate:returnDate}, { headers: { 'Content-Type': 'application/json' } })
             .then(response => {
                 console.log(response.data)
                 if (response.data === 'SUCCESS') {
@@ -162,8 +178,8 @@ const BoardViewContent = ({boardId}) =>{
                     <dl>
                         <dt>제목</dt>
                         <dd>
-                            {edit && (<textarea disabled className="title" value={boardData[0].title}></textarea>)}
-                            {!edit  && (<textarea className="title" defaultValue={boardData[0].title} onChange={handlerChangeTitle}></textarea>)}
+                            {edit && (<textarea disabled className="title" value={boardData.title}></textarea>)}
+                            {!edit  && (<textarea className="title" defaultValue={boardData.title} onChange={handlerChangeTitle}></textarea>)}
                         
                         </dd>
                     </dl> 
@@ -171,23 +187,23 @@ const BoardViewContent = ({boardId}) =>{
                 <div className="info">
                     <dl>
                         <dt>번호</dt>
-                        <dd>{boardData[0].boardId}</dd>
+                        <dd>{boardData.boardId}</dd>
                     </dl>
                     <dl>
                         <dt>글쓴이</dt>
-                        <dd>{boardData[0].ID}</dd>
+                        <dd>{boardData.ID}</dd>
                     </dl>
                     <dl>
                         <dt>작성일</dt>
-                        <dd>{boardData[0].createAt}</dd>
+                        <dd>{boardData.createAt}</dd>
                     </dl>
                     <dl>
                         <dt>지역</dt>
-                        <dd>{boardData[0].location}</dd>
+                        <dd>{boardData.location}</dd>
                     </dl>
                 </div>
-                {edit && (<textarea disabled value={boardData[0].content}></textarea>)}
-                {!edit && (<textarea defaultValue={boardData[0].content} onChange={handlerChangeContent}></textarea>)}
+                {edit && (<textarea disabled value={boardData.content}></textarea>)}
+                {!edit && (<textarea defaultValue={boardData.content} onChange={handlerChangeContent}></textarea>)}
                 
             </div>
             <div className='comment'>

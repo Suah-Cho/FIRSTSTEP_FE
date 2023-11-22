@@ -9,6 +9,7 @@ const BoardWrite = () => {
     const [ location, setLocation ] = useState('');
     const [ content, setContent ] = useState('');
     const [ userId, setUserId ] = useState('');
+    const [ ID, setID ] =useState('');
 
     const goBoardPostList = () => navigate(-1);
 
@@ -17,9 +18,10 @@ const BoardWrite = () => {
     const handlerChangeContent = e => {setContent(e.target.value)}
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:5000/checkid/${sessionStorage.getItem('userId')}`)
+        axios.get(`http://127.0.0.1:5000/checkid/${sessionStorage.getItem('token')}`)
         .then(responce => {
-            setUserId(responce.data.ID)
+            setID(responce.data.ID)
+            setUserId(responce.data.userId)
         }).catch(error => console.log(error));
     }, []);
 
@@ -31,7 +33,7 @@ const BoardWrite = () => {
         } else if (location === '') {
             alert('지역을 입력해주세요.');
         } else {
-            axios.post('http://127.0.0.1:5000/boardWrite', {title : title, location : location, content : content, userId : sessionStorage.getItem('userId') }, { headers: { 'Content-Type': 'application/json' } })
+            axios.post('http://127.0.0.1:5000/boardWrite', {title : title, location : location, content : content, userId : userId }, { headers: { 'Content-Type': 'application/json' } })
             .then(response => {
                 console.log(response);
                 goBoardPostList();
@@ -55,7 +57,7 @@ const BoardWrite = () => {
                         <dl>
                             <dt>글쓴이</dt>
                             {/* session값 오면 넣기 */}
-                            <dd>{userId}</dd> 
+                            <dd>{ID}</dd> 
                         </dl>
                         <dl>
                             <dt>지역</dt>

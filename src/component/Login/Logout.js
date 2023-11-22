@@ -5,7 +5,7 @@ const LoginOut = () => {
 
     const onLogout = () => {
         alert('로그아웃되었습니다:)');
-        sessionStorage.removeItem('userId');
+        sessionStorage.removeItem('token');
         document.location.href = '/';
     }
 

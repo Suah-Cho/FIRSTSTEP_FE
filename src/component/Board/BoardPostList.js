@@ -39,7 +39,7 @@ function BoardPostList() {
     const goBoardPostList = () => navigate('/login');
 
     const authCheck = () => {
-        if ( sessionStorage.getItem('userId') === null ) {
+        if ( sessionStorage.getItem('token') === null ) {
             alert('로그인을 해주세요:)')
             goBoardPostList();
         } else {

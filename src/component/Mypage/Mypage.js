@@ -9,13 +9,13 @@ const Mypage = () => {
 
     useEffect(() => {
 
-        axios.get(`http://127.0.0.1:5000/mypage/${sessionStorage.getItem('userId')}`)
+        axios.get(`http://127.0.0.1:5000/mypage/${sessionStorage.getItem('token')}`)
         .then(res => {
             console.log(typeof(sessionStorage.getItem('userId')))
             setRentList(res.data)
         }).catch(error => console.log(error));
         
-        axios.get(`http://127.0.0.1:5000/mypage/chageName/${sessionStorage.getItem('userId')}`)
+        axios.get(`http://127.0.0.1:5000/mypage/chageName/${sessionStorage.getItem('token')}`)
         .then(res => {
             console.log(res.data["name"])
             setUserName(res.data["name"])
