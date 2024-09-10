@@ -1,0 +1,45 @@
+name: Main Workflow
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v1
+
+            - name: Get next version
+              uses: reecetech/version-increment@2024.4.3
+              id: version
+              with:
+                scheme: semver
+                increment: patch
+                
+            - name: Image Build and Push to ACR
+              uses: azure/docker-login@v2
+              id: build
+              with:
+                login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+                username: ${{ secrets.ACR_USERNAME }}
+                password: ${{ secrets.ACR_PASSWORD }}
+
+            - name: Build and push
+              uses: docker/build-push-action@v2
+              with:
+                context: .
+                file: ./Dockerfile
+                push: true
+                tags: ${{ secrets.ACR_LOGIN_SERVER }}/gp-frontend:${{ steps.version.outputs.version }}
+                build-args: |
+                  IMAGE_TAG=${{ steps.version.outputs.version }}
+                  IMAGE_BUILD_DATE="2024-09-10"
+                cache-from: type=gha
+                cache-to: type=gha,mode=max
