@@ -13,11 +13,6 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v1
-              with:
-                driver: docker-container
-
             - name: Get next version
               uses: reecetech/version-increment@2024.4.3
               id: version
@@ -32,6 +27,11 @@ jobs:
                 login-server: ${{ secrets.ACR_LOGIN_SERVER }}
                 username: ${{ secrets.ACR_USERNAME }}
                 password: ${{ secrets.ACR_PASSWORD }}
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v1
+              with:
+                driver: docker-container
 
             - name: Build and push
               uses: docker/build-push-action@v2
