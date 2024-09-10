@@ -41,5 +41,5 @@ jobs:
                 build-args: |
                   IMAGE_TAG=${{ steps.version.outputs.version }}
                   IMAGE_BUILD_DATE="2024-09-10"
-                cache-from: type=gha
+                cache-from: type=gha # 여기서 gha 는 Guthub Actions 용 캐시를 의미합니다.
                 cache-to: type=gha,mode=max
